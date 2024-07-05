@@ -2,6 +2,9 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const port = 4000;
+const cors = require('cors')
+
+app.use(cors());
 app.get('/',(req, res)=>{
     res.send('안녕하세요.1111');
 })
