@@ -19,13 +19,22 @@ mongoose.connect(process.env.MONGGO_URI)
     })
 ;
 
-app.get('/',(req, res)=>{
-    res.send('안녕하세요.1111');
+app.get('/',(req, res, next)=>{
+    setImmediate(()=>{ next(new Error('it is an Error')) });
+    // throw new Error('it is an error')
+    // res.send('안녕하세요.1111');
 })
 
 app.post('/', (req, res) =>{
     console.log(req.body);
     res.json(req.body);
+})
+
+// app.use('/users', require('./routes/users'));
+
+app.use((error, req, res, next)=>{
+    res.status(error.statusCode || 500);
+    res.send(error.message || '서버에서 에러가 났습니다.');
 })
 
 // app.use('/haha', express.static('uploads')); // 정적인 파일 제공, '/haha' 가상경로 지정, 상대경로
