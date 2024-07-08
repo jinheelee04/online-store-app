@@ -30,6 +30,8 @@ app.post('/', (req, res) =>{
     res.json(req.body);
 })
 
+app.use('/users', require('./routes/users'))
+
 // app.use('/users', require('./routes/users'));
 
 app.use((error, req, res, next)=>{
