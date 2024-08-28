@@ -15,7 +15,7 @@ mongoose.connect(process.env.MONGGO_URI)
         console.log('연결 완료');
     })
     .catch(err => {
-        console.err(err);
+        console.log(err);
     })
 ;
 
